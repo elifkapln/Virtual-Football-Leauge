@@ -1,0 +1,67 @@
+Fenerbahce-Vitor Pereira
+Besiktas-Sergen Yalcin
+Galatasaray-Fatih Terim
+Trabzonspor-Abdullah Avci
+Ankara Gucu-Necati Erkmen
+Adana Demirspor-Murat Sancak
+Gaziantep FK-Erol Bulut
+Konyaspor-Ilhan Palut
+Hatayspor-Omer Erdogan
+Istanbul Basaksehir FK-Emre Belozoglu
+Adana Demirspor-Vincenzo Montella
+Goztepe-Nestor El Maestro
+Kasimpasa SK-Hakan Kutlu
+Sivasspor-Riza Sumudica
+Caykur Rizespor-Hamza Hamzaoglu
+Kayserispor-Hikmet Karaman
+Yeni Malatyaspor-Marius Sumudica
+Bayern-Julian Nagelsmann
+Manchester City-Pep Guardiola
+Liverpool-Jurgen Klopp
+Chelsea-Thomas Tuchel
+FC Barcelona-Xavi
+Real Madrid-Carlo Ancelotti
+Paris Saint Germain-Mauricio Pochettino
+Juventus-Massimiliano Allegri
+Manchester United-Ralf Rangnick
+Atletico de Madrid-Diego Simeone
+Sevilla-Julen Lopetegui
+Tottenham Hotspur-Antonio Conte
+Roma-Jose Mourinho
+Arsenal-Mikel Arteta
+FC Porto-Sergio Conceicao
+Borussia Dortmund-Marco Rose
+Ajax Amsterdam-Erik ten Hag
+Shakhtar Donetsk-Roberto De Zerbi
+RasenBallsport Leipzig-Jesse Marsch
+Napoli-Luciano Spalletti
+Olympique Lyon-Peter Bosz
+Villarreal-Unai Emery
+Atalanta-Gian Piero Gasperini
+Inter-Simone Inzaghi
+FC Basel 1893-Patrick Rahmen
+Lazio-Maurizio Sarri
+SL Benfica-Jorge Jesus
+Sporting CP-Ruben Amorim
+Bayer Leverkusen-Gerardo Seoane
+SK Slavia Praha-Jindrich Trpisovsky
+GNK Dinamo Zagreb-Damir Krznar
+Dynamo Kyiv-Mircea Lucescu
+Zenit-Sergey Semak
+Valencia-Pepe Bordalas
+Veri Madenciligi-Murat Aykut
+Elektrik Devreleri-Bekir Dizdaroglu
+Microprocessors-Mustafa Ulutas
+Elektronik Devreler-Tugrul Cavdar
+Programlamaya Giris-Selen Ayas
+Ayrik Matematik-Vasif Nabiyev
+Digital Design-Murat Ekinci
+Data Structures-Omer Cakir
+Digital Design Lab-Ibrahim Savran
+Programming Languaes-Huseyin Pehlivan
+Automata Theory-Selcuk Cevher
+Database Management-Guzin Ulutas
+Yazilim Muhendisligi-Sedat Gormus
+Girisimcilik-Ibrahim Alp
+Operating Systems-Cemal Kose
+OO Programming-Beste Ustibioglu
