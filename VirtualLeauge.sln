@@ -1,31 +1,1022 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.32002.185
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Project1", "Project1\Project1.vcxproj", "{FF27915D-D1DA-455D-9C3E-3D59AF4C0078}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
-		Release|x64 = Release|x64
-		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FF27915D-D1DA-455D-9C3E-3D59AF4C0078}.Debug|x64.ActiveCfg = Debug|x64
-		{FF27915D-D1DA-455D-9C3E-3D59AF4C0078}.Debug|x64.Build.0 = Debug|x64
-		{FF27915D-D1DA-455D-9C3E-3D59AF4C0078}.Debug|x86.ActiveCfg = Debug|Win32
-		{FF27915D-D1DA-455D-9C3E-3D59AF4C0078}.Debug|x86.Build.0 = Debug|Win32
-		{FF27915D-D1DA-455D-9C3E-3D59AF4C0078}.Release|x64.ActiveCfg = Release|x64
-		{FF27915D-D1DA-455D-9C3E-3D59AF4C0078}.Release|x64.Build.0 = Release|x64
-		{FF27915D-D1DA-455D-9C3E-3D59AF4C0078}.Release|x86.ActiveCfg = Release|Win32
-		{FF27915D-D1DA-455D-9C3E-3D59AF4C0078}.Release|x86.Build.0 = Release|Win32
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {971036D7-3A97-4AFB-9653-7F924DAD77CE}
-	EndGlobalSection
-EndGlobal
+//footballPlayer.h
+#include<iostream>
+#include<string>
+using namespace std;
+
+class footballPlayer
+{
+private:
+	string playersName;
+	string playersLastname;
+	int playersAge;
+	int playersUniformNumber;
+	double playersPerformanceScore;
+	string playersPosition;
+public:
+	footballPlayer();
+	void setPlayersName();
+	void setPlayersLastname();
+	void setPlayersAge();
+	void setPlayersUniformNumber();
+	void setPlayersPerformance();
+	string getName();
+	string getLastname();
+	int getAge();
+	int getUniformNumber();
+	double getPlayersPerformanceScore();
+	void setPosition(string);
+	void printPlayer();
+	string getPosition();
+};
+//footballPlayer.cpp
+
+#include<iostream>
+#include<fstream>
+using namespace std;
+
+footballPlayer::footballPlayer() {
+	setPlayersName();
+	setPlayersLastname();
+	setPlayersAge();
+	setPlayersUniformNumber();
+	setPlayersPerformance();
+}
+void footballPlayer::setPlayersName() {
+	string txtNameLine;
+	int randomNumberForPnames = 0;
+	int numOfNameLines = 0;
+	ifstream pNameFile("playersNames.txt");
+
+	randomNumberForPnames = rand() % 300 + 1; //txt dosyasinin boyutuna gore random sayi olusturuyoruz
+
+	while (getline(pNameFile, txtNameLine))
+	{
+		++numOfNameLines;
+
+		if (numOfNameLines == randomNumberForPnames)
+		{
+			playersName = txtNameLine;
+		}
+	}
+}
+void footballPlayer::setPlayersLastname() {
+	string txtSurnameLine;
+	int randomNumberForPsurnames = 0;
+	int numOfSurnameLines = 0;
+	ifstream pSurnameFile("playersLastnames.txt");
+
+	randomNumberForPsurnames = rand() % 300 + 1;
+
+	while (getline(pSurnameFile, txtSurnameLine))
+	{
+		++numOfSurnameLines;
+
+		if (numOfSurnameLines == randomNumberForPsurnames)
+		{
+			playersLastname = txtSurnameLine;
+		}
+	}
+}
+void footballPlayer::setPlayersAge() {
+
+	int randomAge;
+	randomAge = (rand() % 19) + 18;  //18-36 random atama
+	playersAge = randomAge;
+
+}
+void footballPlayer::setPlayersUniformNumber() {
+
+	int randomUniformNumber;
+	randomUniformNumber = (rand() % 99) + 1; //1-99 random atama
+	playersUniformNumber = randomUniformNumber;
+
+}
+void footballPlayer::setPlayersPerformance() {
+
+	int randomPerformanceScore;
+	randomPerformanceScore = (rand() % 71) + 30; //30-100 random atama
+	playersPerformanceScore = randomPerformanceScore;
+
+}
+string footballPlayer::getName() {
+	return playersName;
+}
+string footballPlayer::getLastname() {
+	return playersLastname;
+}
+int footballPlayer::getAge() {
+	return playersAge;
+}
+int footballPlayer::getUniformNumber() {
+	return playersUniformNumber;
+}
+double footballPlayer::getPlayersPerformanceScore() {
+	return playersPerformanceScore;
+}
+void footballPlayer::setPosition(string pos) {
+	playersPosition = pos;
+}
+void footballPlayer::printPlayer() {
+	cout << playersName << " " << playersLastname << " " << playersAge << " " << " " << playersUniformNumber <<
+		" " << playersPerformanceScore << " " << playersPosition << endl;
+}
+string footballPlayer::getPosition() {
+	return playersPosition;
+}
+//footballTeam.h
+#pragma once
+#include<iostream>
+#include<string>
+#include<vector>
+using namespace std;
+class footballTeam :public footballPlayer
+{
+private:
+	string teamName, technicalDirector, teamNickname, macID;
+	int defenderNum, midfielderNum, forwardNum;
+	int averageAge, averagePerformance;
+	int DPO, OSPO, FPO;
+	int win, lose, drawn;
+	int goalsFor, goalsAgainst, average, leagueScore;
+	vector<string>teamNameVector, technicalDirectorVector;
+	vector<footballPlayer*>defender, midfielder, forward, goalkeeper, allPlayers;
+
+public:
+	footballTeam(int defenderNum = 4, int midfielderNum = 4, int forwardNum = 2);
+	void setTeam();
+	void printTeam();
+	void createPlayer(int defenderNum, int midfielderNum, int forwardNum);
+	void control(int teamAverageAge, int teamAveragePerformance);
+	void createTeamNickname();
+	string getTeamName();
+	string getTechnicalDirector();
+	string getTeamNickname();
+	int getAveragePerformance();
+	int getAverageAge();
+	int getDPO();
+	int getOSPO();
+	int getFPO();
+	void printAllPlayersVector();
+	void setTeamNameWValue(string teamName);
+	void allPlayersVector(int x);
+	void increaseWin();
+	void increaseLose();
+	void increaseDrawn();
+	int getWin();
+	int getLose();
+	int getDrawn();
+	void increaseGoalsFor(int);
+	void increaseGoalsAgainst(int);
+	int getGoalsFor();
+	int getGoalsAgainst();
+	void calculateLeagueScore();
+	int getLeagueScore();
+	void calculateAverage();
+	int getAverage();
+};
+//footballTeam.cpp
+#include<iostream>
+#include<string>
+#include<fstream>
+#include<vector>
+#include <algorithm>
+#include <iterator>
+#include<iomanip>
+using namespace std;
+
+footballTeam::footballTeam(int defenderNum, int midfielderNum, int forwardNum) {
+	setTeam();
+	createPlayer(defenderNum, midfielderNum, forwardNum);
+	control(averageAge, averagePerformance);
+}
+void footballTeam::createTeamNickname() {
+	vector<string>alphabet = { "A","B","C","D","E","F","G","H","I","J","K","L","M",
+		"N","O","P","Q","R","S","T","U","V","W","X","Y","Z" };
+	string nick;
+
+	int randN = rand() % 2 + 2;  // rastgele 2 ya da 3 uretiyoruz
+	for (int s = 1; s <= randN; s++) {
+		int randForNick = rand() % 26;  //alfabe vectorunden harf cekmek icin rastgele bir index numarasi olusturuyoruz
+		nick += alphabet[randForNick];   //her seferinde cekilen harfi ekliyoruz
+	}
+	teamNickname = nick;
+}
+void footballTeam::setTeam() {
+
+	fstream teamFile;
+	string delimiter = "-";
+	string token;
+	string tp;
+	size_t pos = 0;
+	int j = 0;
+	int indexNumber = 0;
+
+	teamFile.open("footballTeams.txt", ios::in);
+	if (teamFile.is_open()) {
+		string tp;
+		while (getline(teamFile, tp)) { //datayi dosyadan okuyup vectorlere yerlerstiriyorum
+			j = 0;
+			while ((pos = tp.find(delimiter)) != string::npos) { //delimiter ile txtteki verileri (takim adi
+				token = tp.substr(0, pos);                       //-teknik direktor-takim ismi kisaltmasi)
+				if (j == 0) {                                    //ayirip ayri ayri vectorlerde tutuyorum
+
+					teamNameVector.push_back(token);
+				}
+				tp.erase(0, pos + delimiter.length());
+				technicalDirectorVector.push_back(tp);
+				j++;
+			}
+			indexNumber++;
+		}
+		teamFile.close();
+	}
+	int randomNumberForTeamIndex = rand() % 67;    //
+	teamName = teamNameVector[randomNumberForTeamIndex];
+	technicalDirector = technicalDirectorVector[randomNumberForTeamIndex];
+	createTeamNickname();
+}
+void footballTeam::printTeam() {
+	cout << setw(15) << "Team" << setw(33) << "Technical director" << setw(20) << "Nickname"
+		<< setw(27) << "Average performance" << setw(16) << "Average age" << "\n\n"
+		<< setw(15) << teamName << setw(10) << " | " << setw(20) << technicalDirector << setw(10) << " | "
+		<< setw(10) << teamNickname << setw(11) << " | " << setw(11) << averagePerformance
+		<< setw(11) << " | " << setw(10) << averageAge << "\n\n";
+}
+string footballTeam::getTeamName() {
+	return teamName;
+}
+string footballTeam::getTechnicalDirector() {
+	return technicalDirector;
+}
+string footballTeam::getTeamNickname() {
+	return teamNickname;
+}
+/*bu asamada footballTeam headerinda tanimlamis oldugum vectorlere bolge bazinda
+	girilen sayida futbolcu uretip atiyorum.
+	defender/defans/D ### midfielder/orta saha/M ### forward/forvet/F ### goalkeeper/kaleci/G*/
+void footballTeam::createPlayer(int def, int mid, int forw) {
+	int countForDPO = 0, countForOSPO = 0, countForFPO = 0;
+
+	for (int i = 0; i < def; i++) {
+
+		defender.push_back(new footballPlayer());
+		defender[i]->setPosition("D");
+		countForDPO += defender[i]->getPlayersPerformanceScore();
+	}
+	for (int j = 0; j < mid; j++) {
+
+		midfielder.push_back(new footballPlayer());
+		midfielder[j]->setPosition("M");
+		countForOSPO += midfielder[j]->getPlayersPerformanceScore();
+	}
+	for (int k = 0; k < forw; k++) {
+
+		forward.push_back(new footballPlayer());
+		forward[k]->setPosition("F");
+		countForFPO += forward[k]->getPlayersPerformanceScore();
+	}
+	goalkeeper.push_back(new footballPlayer());
+	goalkeeper[0]->setPosition("G");
+
+	if (def != 0) {
+		DPO = countForDPO / def;
+	}
+	else
+		DPO = 0;
+	if (mid != 0) {
+		OSPO = countForOSPO / mid;
+	}
+	else
+		OSPO = 0;
+	if (forw != 0) {
+		FPO = countForFPO / forw;
+	}
+	else
+		FPO = 0;
+}
+/*bu asamada bolge bazinda urettigim oyunculari tek bir vectore atip ortalama
+yas ve ortalama performas degerlerini kontrol ederek gerektigi durumlarda yeni
+setlemeler yapiyorum*/
+void footballTeam::control(int tAvAge, int tAvPerf) {
+	int countForAges = 0, countForPerformanceScore = 0;
+	allPlayers.insert(allPlayers.end(), defender.begin(), defender.end());
+	allPlayers.insert(allPlayers.end(), midfielder.begin(), midfielder.end());
+	allPlayers.insert(allPlayers.end(), forward.begin(), forward.end());
+	allPlayers.insert(allPlayers.end(), goalkeeper.begin(), goalkeeper.end());
+
+	for (int s = 0; s < allPlayers.size(); s++) {
+		countForAges += allPlayers[s]->getAge();
+		countForPerformanceScore += allPlayers[s]->getPlayersPerformanceScore();
+	}
+
+	averageAge = countForAges / allPlayers.size();
+	averagePerformance = countForPerformanceScore / allPlayers.size();
+
+	int controlAge = 0;
+	while (!((averageAge >= 25) && (averageAge <= 32))) {
+		controlAge = 0;
+		for (int s = 0; s < allPlayers.size(); s++) {
+			allPlayers[s]->setPlayersAge();
+			controlAge += allPlayers[s]->getAge();
+		}
+		averageAge = controlAge / allPlayers.size();
+	}
+
+	tAvAge = averageAge;
+
+	int controlPerformance = 0;
+	while (averagePerformance < 60) {
+		controlPerformance = 0;
+		for (int f = 0; f < allPlayers.size(); f++) {
+			allPlayers[f]->setPlayersPerformance();
+			controlPerformance += allPlayers[f]->getPlayersPerformanceScore();
+		}
+		averagePerformance = controlPerformance / allPlayers.size();
+	}
+	tAvPerf = averagePerformance;
+
+	//burada uniforma numaralarinin ayni olmamasi icin kontrol ediyorum ve
+	//gerekli durumlarda setleyip en bastan kontrol etme islemi sagliyorum
+	for (int c = 0; c < allPlayers.size(); c++) {
+		for (int v = 0; v < allPlayers.size(); v++) {
+			if (c == v) {
+				continue;
+			}
+			else {
+				if (allPlayers[c]->getUniformNumber() == allPlayers[v]->getUniformNumber()) {
+					allPlayers[c]->setPlayersUniformNumber();
+					v = -1;
+					continue;
+				}
+			}
+		}
+	}
+}
+void footballTeam::printAllPlayersVector() {
+	for (int p = 0; p < allPlayers.size(); p++) {
+		cout << setw(15) << allPlayers[p]->getName() << "       |" << setw(15) << allPlayers[p]->getLastname() << "       |" << setw(10)
+			<< allPlayers[p]->getAge() << "       |" << setw(10) << allPlayers[p]->getUniformNumber() << "       |" << setw(10)
+			<< allPlayers[p]->getPlayersPerformanceScore() << "       |" << setw(10) << allPlayers[p]->getPosition() << endl;
+	}
+	cout << "\n";
+}
+int footballTeam::getDPO() {
+	return DPO;
+}
+int footballTeam::getOSPO() {
+	return OSPO;
+}
+int footballTeam::getFPO() {
+	return FPO;
+}
+int footballTeam::getAveragePerformance() {
+	return averagePerformance;
+}
+int footballTeam::getAverageAge() {
+	return averageAge;
+}
+void footballTeam::setTeamNameWValue(string tName) {
+	teamName = tName;
+}
+void footballTeam::allPlayersVector(int x) {
+	cout << setw(15) << allPlayers[x]->getName() << setw(15) << allPlayers[x]->getLastname() << setw(12)
+		<< allPlayers[x]->getPosition() << setw(12) << allPlayers[x]->getPlayersPerformanceScore();
+}
+void footballTeam::increaseWin() {
+	win++;
+}
+void footballTeam::increaseLose() {
+	lose++;
+}
+void footballTeam::increaseDrawn() {
+	drawn++;
+}
+int footballTeam::getWin() {
+	return win;
+}
+int footballTeam::getLose() {
+	return lose;
+}
+int footballTeam::getDrawn() {
+	return drawn;
+}
+void footballTeam::increaseGoalsFor(int s) {
+	goalsFor += s;
+}
+void footballTeam::increaseGoalsAgainst(int f) {
+	goalsAgainst += f;
+}
+int footballTeam::getGoalsFor() {
+	return goalsFor;
+}
+int footballTeam::getGoalsAgainst() {
+	return goalsAgainst;
+}
+void footballTeam::calculateLeagueScore() {
+	leagueScore = win * 3 + drawn;
+}
+int footballTeam::getLeagueScore() {
+	return leagueScore;
+}
+void footballTeam::calculateAverage() {
+	average = goalsFor - goalsAgainst;
+}
+int footballTeam::getAverage() {
+	return average;
+}
+//match.h
+#pragma once
+#include<iostream>
+#include<vector>
+using namespace std;
+
+class match :public footballTeam
+{
+private:
+	int macID;
+	footballTeam team1, team2;
+	int matchScoreoft1, matchScoreoft2;
+
+public:
+	match(footballTeam team1, footballTeam team2);
+	void macIDgenerator();
+	int getMacID();
+	string getTeamNameForMatch(footballTeam);
+	string getMatcht1();
+	string getMatcht2();
+	void matchScoreGenerator();
+	int getMatchScoret1();
+	int getMatchScoret2();
+	string getAbbreviationt1();
+	string getAbbreviationt2();
+};
+//match.cpp
+#include<iostream>
+using namespace std;
+
+match::match(footballTeam t1, footballTeam t2) {
+	team1 = t1;
+	team2 = t2;
+	macIDgenerator();
+	matchScoreGenerator();
+}
+void match::macIDgenerator() {
+	macID = rand() % 9000 + 1000;
+}
+int match::getMacID() {
+	return macID;
+}
+string match::getTeamNameForMatch(footballTeam t) {
+	return t.getTeamName();
+}
+string match::getMatcht1() {
+	return team1.getTeamName();
+}
+string match::getMatcht2() {
+	return team2.getTeamName();
+}
+void match::matchScoreGenerator() {
+	matchScoreoft1 = rand() % 7;
+	matchScoreoft2 = rand() % 7;
+
+	if (team1.getFPO() > team2.getFPO()) {
+		matchScoreoft1++;
+	}
+	else if (team2.getFPO() > team1.getFPO()) {
+		matchScoreoft2++;
+	}
+	if (team1.getDPO() > team2.getDPO()) {
+		if (matchScoreoft2 > 0) {
+			matchScoreoft2--;
+		}
+	}
+	else if (team2.getDPO() > team1.getDPO()) {
+		if (matchScoreoft1 > 0) {
+			matchScoreoft1--;
+		}
+	}
+	if (team1.getOSPO() > team2.getOSPO()) {
+		if (matchScoreoft2 > 0) {
+			matchScoreoft1++;
+			matchScoreoft2--;
+		}
+	}
+	else if (team2.getOSPO() > team1.getOSPO()) {
+		if (matchScoreoft1 > 0) {
+			matchScoreoft2++;
+			matchScoreoft1--;
+		}
+	}
+	if (team1.getAveragePerformance() > team2.getAveragePerformance()) {
+		int chooseOne = rand() % 2;   // 0 ya da 1 uretip ona gore ya team 1'in score degerini 1 arttiracagiz
+									  // ya da team 2'nin score degerini 1 azaltacagiz
+		if (chooseOne == 0) {
+			matchScoreoft1++;
+		}
+		else {
+			if (matchScoreoft2 > 0) {
+				matchScoreoft2--;
+			}
+			else {                    // team 2'nin 0 oldugu durumda degerini azaltamayacagimiz icin team 1'in 
+				matchScoreoft1++;     // degerini 1 arttiriyoruz
+			}
+		}
+	}
+	else if (team2.getAveragePerformance() > team1.getAveragePerformance()) {
+		int chooseOne = rand() % 2;
+
+		if (chooseOne == 0) {
+			matchScoreoft2++;
+		}
+		else {
+			if (matchScoreoft1 > 0) {
+				matchScoreoft1--;
+			}
+			else {                     // burada da team 1'in 0 oldugu durumda degerini azaltamayacagimiz icin 
+				matchScoreoft2++;      // team 2'nin degerini 1 arttiriyoruz
+			}
+		}
+	}
+}
+int match::getMatchScoret1() {
+	return matchScoreoft1;
+}
+int match::getMatchScoret2() {
+	return matchScoreoft2;
+}
+string match::getAbbreviationt1() {
+	return team1.getTeamNickname();
+}
+string match::getAbbreviationt2() {
+	return team2.getTeamNickname();
+}
+//fixture.h
+#pragma once
+#include<iterator>
+
+class fixture :public footballTeam
+{
+private:
+	int teamNumber, def, mid, forw;
+	vector<footballTeam*> teams, firstTeam, lastTeam;
+	vector<match*> gameWeek;
+	vector<vector<match*>> allGameWeeks;
+	int index1, index2;
+public:
+	fixture(int def, int mid, int forw);
+	void createTeams(int teamNumber, int def, int mid, int forw);
+	void teamNameControl(int teamNumber);
+	void teamNicknameControl(int teamNumber);
+	int getTeamNumber();
+	void createAllGameWeeks();
+	void findTeaminVector(int, int);
+	void increaseWinLoseDrawnCalGoalScores();
+	void calculateAllLeagueScoresnAverage();
+	void displayAllTeams();
+	void displayFixture();
+	void displayInfosWnameOrNickname(string);
+	void displayAllMatchesofTeam(string);
+	void displayInfosWmacID(int);
+	void displayVirtualLeague();
+	void setTeamNumberWuserInput();
+};
+//fixture.cpp
+#include<iostream>
+#include<iterator>
+#include<iomanip>
+#include<algorithm>
+#include <cstring>
+#include <string>
+using namespace std;
+
+fixture::fixture(int def, int mid, int forw) {
+	teamNumber = 18;
+	setTeamNumberWuserInput();
+	createTeams(teamNumber, def, mid, forw);
+	teamNameControl(teamNumber);
+	teamNicknameControl(teamNumber);
+	createAllGameWeeks();
+	increaseWinLoseDrawnCalGoalScores();
+	calculateAllLeagueScoresnAverage();
+	cout << endl;
+}
+void fixture::createTeams(int teamNumber, int def, int mid, int forw) {
+	for (int k = 0; k < teamNumber; k++) {
+		teams.push_back(new footballTeam(def, mid, forw));
+	}
+}
+/*takim isimlerini kontrol etmek icin ic ice for dongusu
+yazdim. buradaki mantik su; ayni indexi birbiriyle karsilastirmik
+olmamak icin if(x==y) kosulunu yazdim. diger durumlarda kontroller
+saglaniyor ve esitlik durumunda tekrar atama yapiliyor. fakat bu asamadan
+sonra dongunun isleyisini basa dondurmek gerekiyor, bunun icin y=-1; ile
+durumu kontrol altina aldim. dongunun basina geldiginde for dongusunun
+kurali geregi y=0'dan baslayarak tekrar kontrol ediyor.*/
+void fixture::teamNameControl(int teamNumber) {
+	for (int w = 0; w < teamNumber; w++) {
+		for (int y = 0; y < teamNumber; y++) {
+			if (w == y) {
+				continue;
+			}
+			else {
+				if (teams[w]->getTeamName() == teams[y]->getTeamName()) {
+					teams[w]->setTeam();
+					y = -1;
+					continue;
+				}
+			}
+		}
+	}
+}
+void fixture::teamNicknameControl(int teamNumber) {
+	for (int w = 0; w < teamNumber; w++) {
+		for (int y = 0; y < teamNumber; y++) {
+			if (w == y) {
+				continue;
+			}
+			else {
+				if (teams[w]->getTeamNickname() == teams[y]->getTeamNickname()) {
+					teams[w]->createTeamNickname();
+					y = -1;
+					continue;
+				}
+			}
+		}
+	}
+}
+int fixture::getTeamNumber() {
+	return teamNumber;
+}
+void fixture::createAllGameWeeks() {
+
+	firstTeam.push_back(teams[0]);
+	teams.erase(teams.begin());
+
+	if (teamNumber % 2 == 0) { //çift sayıda takım sayısı varsa
+
+		for (int i = 0; i < (teamNumber - 1); i++) {   //teamNumber - 1 hafta maç yapılacak.
+
+			//ilk hafta için fikstür
+			if (i == 0) {
+
+				gameWeek.push_back(new match(*firstTeam[0], *teams[0]));
+
+				for (int j = 1; j < teamNumber / 2; j++) {   //1 haftada teamNumber / 2 maç yapılacak.
+					gameWeek.push_back(new match(*teams[j], *teams[teamNumber - j - 1]));
+				}
+				allGameWeeks.push_back(gameWeek);
+				gameWeek.clear();
+			}
+
+			//diğer haftalar için fikstür
+			else {
+
+				//vektörün elemanlarını 1 sağa kaydırır.
+				const int SIZE = teamNumber - 1;
+				lastTeam.push_back(teams[SIZE - 1]);
+
+				for (int m = SIZE - 1; m > 0; m--)
+					teams[m] = teams[m - 1];
+				teams.erase(teams.begin()); //0. indexi siliyor
+				teams.insert(teams.begin(), lastTeam[0]);  //0. indexe lastTeami ekliyor
+
+				gameWeek.push_back(new match(*firstTeam[0], *teams[0]));
+
+				for (int j = 1; j < teamNumber / 2; j++) {   //1 haftada teamNumber / 2 maç yapılacak.
+					gameWeek.push_back(new match(*teams[j], *teams[teamNumber - j - 1]));
+				}
+				allGameWeeks.push_back(gameWeek);
+				gameWeek.clear();
+				lastTeam.clear();
+			}
+		}
+		teams.push_back(firstTeam[0]);
+	}
+	else {
+		vector<footballTeam*>imNotEvenExist;  //bununla eşleşen takım o haftayı bay geçecek.
+		imNotEvenExist.push_back(new footballTeam);
+		imNotEvenExist[0]->setTeamNameWValue("i don't belong here");
+		teams.push_back(imNotEvenExist[0]);
+
+		for (int i = 0; i < teamNumber; i++) {   //teamNumber - 1 hafta maç yapılacak.
+
+			//ilk hafta için fikstür
+			if (i == 0) {
+				if (firstTeam[0]->getTeamName() != imNotEvenExist[0]->getTeamName()
+					&& teams[0]->getTeamName() != imNotEvenExist[0]->getTeamName()) {
+					gameWeek.push_back(new match(*firstTeam[0], *teams[0]));
+				}
+				for (int j = 1; j < (teamNumber + 1) / 2; j++) {   //1 haftada teamNumber / 2 maç yapılacak.
+					if (teams[j]->getTeamName() != imNotEvenExist[0]->getTeamName()
+						&& teams[teamNumber - j]->getTeamName() != imNotEvenExist[0]->getTeamName()) {
+						gameWeek.push_back(new match(*teams[j], *teams[teamNumber - j]));
+					}
+				}
+				allGameWeeks.push_back(gameWeek);
+				gameWeek.clear();
+			}
+
+			//diğer haftalar için fikstür
+			else {
+
+				//vektörün elemanlarını 1 sağa kaydırır.
+				const int SIZE = teamNumber;
+				lastTeam.push_back(teams[SIZE - 1]);
+
+				for (int m = SIZE - 1; m > 0; m--)
+					teams[m] = teams[m - 1];
+				teams.erase(teams.begin()); //0. indexi siliyor - direkt atama yapmak mumkun olmadigi icin boyle yaptirdim
+				teams.insert(teams.begin(), lastTeam[0]);  //0. indexe lastTeami ekliyor
+
+				if (firstTeam[0]->getTeamName() != imNotEvenExist[0]->getTeamName()
+					&& teams[0]->getTeamName() != imNotEvenExist[0]->getTeamName()) {
+					gameWeek.push_back(new match(*firstTeam[0], *teams[0]));
+				}
+				for (int j = 1; j < (teamNumber + 1) / 2; j++) {   //1 haftada teamNumber / 2 maç yapılacak.
+					if (teams[j]->getTeamName() != imNotEvenExist[0]->getTeamName()
+						&& teams[teamNumber - j]->getTeamName() != imNotEvenExist[0]->getTeamName()) {
+						gameWeek.push_back(new match(*teams[j], *teams[teamNumber - j]));
+					}
+				}
+				allGameWeeks.push_back(gameWeek);
+				gameWeek.clear();
+				lastTeam.clear();
+			}
+		}
+		teams.push_back(firstTeam[0]); //sildigimiz takimi tekrar ekliyoruz, sonradan ulasmak icin gerekli
+		for (int s = 0; s < teams.size(); s++) {  // olusturdugumuz ekstra takimi teams vectorunden siliyoruz
+			if (teams[s]->getTeamName() == imNotEvenExist[0]->getTeamName()) {
+				teams.erase(teams.begin() + s);
+			}
+		}
+	}
+
+	vector<match*>allMatches;  //bu kisimda macIDleri kontrol edecegiz, ilk olarak tum matchleri bir vectore atiyoruz
+	for (int a = 0; a < allGameWeeks.size(); a++) {   // bu islemi yapmamizin sebebi vector vectorunde gezinmenin zor olmasi
+		for (int b = 0; b < teamNumber / 2; b++) {
+			allMatches.push_back(allGameWeeks[a][b]);
+		}
+	}
+	for (int w = 0; w < allMatches.size(); w++) {
+		for (int y = 0; y < allMatches.size(); y++) {
+			if (w == y) {
+				continue;
+			}
+			else {
+				if (allMatches[w]->getMacID() == allMatches[y]->getMacID()) {  // ayni macIDye sahip baska bir mac bulunursa
+					for (int g = 0; g < allGameWeeks.size(); g++) {
+						for (int a = 0; a < teamNumber / 2; a++) {  // allGameWeeks vektorunde o maci arayip bulacagiz ve
+							if (allMatches[w]->getMacID() == allGameWeeks[g][a]->getMacID()             // yeni bir macID
+								&& allMatches[w]->getMatcht1() == allGameWeeks[g][a]->getMatcht1()      // atayacagiz
+								&& allMatches[w]->getMatcht2() == allGameWeeks[g][a]->getMatcht2()) {
+
+								allMatches[w]->macIDgenerator();
+							}
+						}
+					}
+					y = -1;
+					continue;
+				}
+			}
+		}
+	}
+}
+void fixture::findTeaminVector(int a, int z) {                             //allGamesWeek vectorundeki secilen matchteki
+	for (int s = 0; s < teams.size(); s++) {                               //takimlarin teams vectorundeki indexlerini buluyoruz
+		if (allGameWeeks[a][z]->getMatcht1() == teams[s]->getTeamName()) {
+			index1 = s;
+		}
+		if (allGameWeeks[a][z]->getMatcht2() == teams[s]->getTeamName()) {
+			index2 = s;
+		}
+	}
+}
+void fixture::increaseWinLoseDrawnCalGoalScores() {
+	for (int a = 0; a < allGameWeeks.size(); a++) {
+		for (int z = 0; z < teamNumber / 2; z++) {
+			findTeaminVector(a, z); //ilgili eslesmedeki takimlari teams vectorunde buluyoruz
+			//sonrasinda ise o mac atilan gol sayilarina gore win, lose, drawn degerlerini guncelliyoruz
+			if (allGameWeeks[a][z]->getMatchScoret1() > allGameWeeks[a][z]->getMatchScoret2()) {
+				teams[index1]->increaseWin();
+				teams[index2]->increaseLose();
+			}
+			else if (allGameWeeks[a][z]->getMatchScoret2() > allGameWeeks[a][z]->getMatchScoret1()) {
+				teams[index1]->increaseLose();
+				teams[index2]->increaseWin();
+			}
+			else if (allGameWeeks[a][z]->getMatchScoret1() == allGameWeeks[a][z]->getMatchScoret2()) {
+				teams[index1]->increaseDrawn();
+				teams[index2]->increaseDrawn();
+			}
+			//ve takimlarin toplam attiklari/yedikleri gol sayilarini hesapliyoruz
+			teams[index1]->increaseGoalsFor(allGameWeeks[a][z]->getMatchScoret1());
+			teams[index1]->increaseGoalsAgainst(allGameWeeks[a][z]->getMatchScoret2());
+			teams[index2]->increaseGoalsFor(allGameWeeks[a][z]->getMatchScoret2());
+			teams[index2]->increaseGoalsAgainst(allGameWeeks[a][z]->getMatchScoret1());
+		}
+	}
+}
+void fixture::calculateAllLeagueScoresnAverage() {
+	for (int v = 0; v < teams.size(); v++) {
+		teams[v]->calculateLeagueScore(); // (win * 3 + drawn) seklinde ilgili takimin lig skoru hesaplaniyoruz
+		teams[v]->calculateAverage();     // averaj hesabini da burada yapiyoruz
+	}
+}
+void fixture::setTeamNumberWuserInput() {
+	int tNum;
+	cout << "Enter the number of teams: " << endl;
+	cout << "(If you want to set the number as default, enter 0.)\n";
+	cin >> tNum;
+	if (tNum != 0) teamNumber = tNum;
+	cout << "\n Just a second...\n";
+}
+void fixture::displayAllTeams() {  //case 1
+	for (int o = 0; o < teams.size(); o++) {
+		teams[o]->printTeam();
+		cout << "----------------------------------------------------------------------------------------------------------------------- \n\n";
+	}
+}
+void fixture::displayFixture() { //case 2
+	for (int a = 0; a < allGameWeeks.size(); a++) {
+		cout << "\n" << setw(52) << " | WEEK - " << a + 1 << " | \n\n";
+		for (int z = 0; z < teamNumber / 2; z++) {
+
+			cout << "\n" << setw(7) << "macID: " << setw(6) << allGameWeeks[a][z]->getMacID()
+				<< setw(25) << allGameWeeks[a][z]->getMatcht1() << setw(15)
+				<< "  vs.  " << setw(25) << allGameWeeks[a][z]->getMatcht2() << "\n"
+				<< "Match scores: " << allGameWeeks[a][z]->getMatchScoret1()
+				<< " - " << allGameWeeks[a][z]->getMatchScoret2() << "\n\n";
+			cout << "----------------------------------------------------------------------------------------------------------------------- \n";
+		}
+	}
+}
+void fixture::displayInfosWnameOrNickname(string input) {  //case 3
+	for (int y = 0; y < teams.size(); y++) {
+		if (teams[y]->getTeamNickname() == input || teams[y]->getTeamName() == input) {
+			teams[y]->printTeam();
+			cout << "\n" << setw(15) << "Name" << setw(23) << "Lastname" << setw(19) << "Age" << setw(23)
+				<< "Uniform Number" << setw(16) << "Performance" << setw(18) << "Position\n"
+				<< "-----------------------------------------------------------------------------------------------------------------------\n";
+			teams[y]->printAllPlayersVector();
+		}
+	}
+}
+void fixture::displayAllMatchesofTeam(string input) {  //case 4
+	for (int a = 0; a < allGameWeeks.size(); a++) {
+		for (int z = 0; z < teamNumber / 2; z++) {
+			if (allGameWeeks[a][z]->getMatcht1() == input || allGameWeeks[a][z]->getMatcht2() == input
+				|| allGameWeeks[a][z]->getAbbreviationt1() == input || allGameWeeks[a][z]->getAbbreviationt2() == input) {
+				cout << "\n" << setw(7) << "macID: " << setw(6) << allGameWeeks[a][z]->getMacID()
+					<< setw(25) << allGameWeeks[a][z]->getMatcht1() << setw(15)
+					<< "  vs.  " << setw(25) << allGameWeeks[a][z]->getMatcht2() << "\n"
+					<< "Match scores: " << allGameWeeks[a][z]->getMatchScoret1()
+					<< " - " << allGameWeeks[a][z]->getMatchScoret2() << "\n"
+					<< "\n-----------------------------------------------------------------------------------------------------------------------\n";
+			}
+		}
+	}
+}
+void fixture::displayInfosWmacID(int ID) { //case 5
+	for (int q = 0; q < allGameWeeks.size(); q++) {
+		for (int m = 0; m < teamNumber / 2; m++) {
+			if (allGameWeeks[q][m]->getMacID() == ID) {
+				cout << setw(35) << allGameWeeks[q][m]->getMatcht1() << "                        vs.  "
+					<< setw(35) << allGameWeeks[q][m]->getMatcht2() << "\n\n";
+				cout << setw(15) << "Name" << setw(15) << "Lastname" << setw(15) << "Position" << setw(13) << "Performance"
+					<< setw(17) << "Name" << setw(16) << "Lastname" << setw(15) << "Position" << setw(14) << "Performance\n";
+				cout << "-----------------------------------------------------------------------------------------------------------------------\n";
+				findTeaminVector(q, m);
+				for (int x = 0; x < 11; x++) {
+					teams[index1]->allPlayersVector(x);
+					cout << "     |";
+					teams[index2]->allPlayersVector(x);
+					cout << "\n";
+				}
+				cout << "\n------------------------------------------------------Match scores-----------------------------------------------------\n"
+					<< setw(25) << teams[index1]->getTeamName() << " :  " << setw(6) << allGameWeeks[q][m]->getMatchScoret1()
+					<< setw(51) << teams[index2]->getTeamName() << " :  " << setw(6) << allGameWeeks[q][m]->getMatchScoret2() << endl;
+				cout << "---------------------------------------------------Average performance--------------------------------------------------\n"
+					<< setw(25) << teams[index1]->getTeamName() << " :  " << setw(6) << teams[index1]->getAveragePerformance()
+					<< setw(51) << teams[index2]->getTeamName() << " :  " << setw(6) << teams[index2]->getAveragePerformance() << endl;
+				cout << "----------------------------------------------------Chance of winning---------------------------------------------------\n"
+					<< setw(25) << teams[index1]->getTeamName() << " :  %" << setw(6) << (double(teams[index1]->getAveragePerformance()) /
+						double((teams[index1]->getAveragePerformance() + teams[index2]->getAveragePerformance())) * 100)
+					<< setw(49) << teams[index2]->getTeamName() << " :  %" << setw(6)
+					<< (double(teams[index2]->getAveragePerformance()) / double((teams[index1]->getAveragePerformance() +
+						teams[index2]->getAveragePerformance())) * 100) << "\n";
+			}
+		}
+	}
+}
+void fixture::displayVirtualLeague() { //case 6
+	vector<int>leagueScores;
+	vector<footballTeam*>copyofTeams;
+	for (int l = 0; l < teams.size(); l++) {
+		leagueScores.push_back(teams[l]->getLeagueScore());  //lig skorlarini bir vectore atiyoruz
+		copyofTeams.push_back(teams[l]);                     //teams vectorunu kopyaliyoruz
+	}
+	cout << "\n" << setw(6) << "Rank" << setw(22) << "Team" << setw(15) << "Matches" << setw(7)
+		<< "Win" << setw(10) << "Drawn" << setw(9) << "Lose" << setw(9) << "Goals" << setw(9) << "Goals"
+		<< setw(10) << "Average" << setw(9) << "Score\n";
+	cout << setw(42) << "Played" << setw(35) << "For" << setw(12) << "Against\n";
+	cout << "---------------------------------------------------------------------------------------------------------\n";
+	for (int k = 0; k < teams.size(); k++) {
+		cout << setw(4) << k + 1 << ". ";
+		for (int a = 0; a < teams.size(); a++) {
+			auto it = max_element(leagueScores.begin(), leagueScores.end());  //en yuksek degere sahip skoru buluyoruz
+			if (*it == copyofTeams[a]->getLeagueScore()) {
+				cout << setw(25) << copyofTeams[a]->getTeamName() << setw(9) << teamNumber - 1 << setw(9)
+					<< copyofTeams[a]->getWin() << setw(9) << copyofTeams[a]->getDrawn() << setw(9) << copyofTeams[a]->getLose()
+					<< setw(9) << copyofTeams[a]->getGoalsFor() << setw(9) << copyofTeams[a]->getGoalsAgainst()
+					<< setw(9) << copyofTeams[a]->getAverage() << setw(9) << copyofTeams[a]->getLeagueScore() << "\n";
+				if (leagueScores.size() > 0) {
+					leagueScores.erase(it);
+				}                             //tabloya yazdirdiktan sonra her iki vectorden de o takima ait degerleri siliyoruz
+				if (copyofTeams.size() > 0) {
+					copyofTeams.erase(copyofTeams.begin() + a);
+				}
+				break;
+			}
+		}
+	}
+}
+//main.cpp
+#include <iostream>
+#include<vector>
+#include<time.h>
+#include<iomanip>
+using namespace std;
+string input;
+int def, mid, forw, ID;
+int choise = -1;
+
+int main()
+{
+	srand(time(NULL));
+
+	cout << "Enter the number of defenders, midfielders and forwards of the teams, respectively: \n";
+	cout << "(If you want to set the numbers as default, enter 9.)\n";
+	cin >> def;
+	if (def != 9) {
+		cin >> mid >> forw;
+	}
+	else {
+		def = 4;
+		mid = 4;
+		forw = 2;
+	}
+
+	fixture fixture1(def, mid, forw);
+
+	while (choise != 99) {
+		cout << "\n";
+		cout << " 0. Halt\n"
+			<< " 1. Display all teams with their informations\n"
+			<< " 2. Display fixture\n"
+			<< " 3. Enter a team name or team nickname to display players and team information\n"
+			<< " 4. Enter the name or nickname of the team whose matches you want to display\n"
+			<< " 5. Enter the macID of the match whose information you want to display\n"
+			<< " 6. Display virtual league standings\n";
+
+		cin >> choise;
+
+		switch (choise)
+		{
+		case 0:
+			return 0;
+
+		case 1:
+			fixture1.displayAllTeams();
+			continue;
+
+		case 2:
+			fixture1.displayFixture();
+			continue;
+
+		case 3:
+			cout << " Team name or team nickname:  ";
+			cin.ignore();
+			getline(cin, input);
+			cout << "\n";
+			fixture1.displayInfosWnameOrNickname(input);
+			continue;
+
+		case 4:
+			cout << " Team name or team nickname:  ";
+			cin.ignore();
+			getline(cin, input);
+			fixture1.displayAllMatchesofTeam(input);
+			continue;
+
+		case 5:
+			cout << " macID:  ";
+			cin >> ID;
+			fixture1.displayInfosWmacID(ID);
+			continue;
+
+		case 6:
+			fixture1.displayVirtualLeague();
+			continue;
+		}
+	}
+}
