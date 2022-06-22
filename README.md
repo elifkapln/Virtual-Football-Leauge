@@ -1,6 +1,7 @@
 # Virtual-Football-Leauge 
-Nesne yönelimli programlama mantığıyla menü tabanlı basit ölçekte bir sanal lig uygulaması geliştirildi.
+A simple, menu-based virtual league application was developed with object-oriented programming logic.
 
-Takım  ve teknik direktör isimlerini dosyadan okuma, takımlara ait takma isimler oluşturma, futbolcu bilgileri üreterek takım oluşturma, lig fikstürü oluşturma, takımların kazanma oranlarını belirleme ve maç skoru üretme gibi temel iş blokları gerçekleştirildi.
+Basic work blocks such as reading team and football coach names from the file, creating nicknames for teams, creating teams by generating football player information, creating league fixtures, determining the winning rates of teams and generating match scores were carried out.
 
-Takım ve teknik direktör isimleri '[footballTeams.txt](https://github.com/elifkapln/Virtual-Football-Leauge/files/8884783/footballTeams.txt)' adlı dosyadan okunur. '[playersNames.txt](https://github.com/elifkapln/Virtual-Football-Leauge/files/8884790/playersNames.txt)' ve '[playersLastnames.txt](https://github.com/elifkapln/Virtual-Football-Leauge/files/8884791/playersLastnames.txt)' dosyalarında yer alan bilgilerden ise rastgele futbolcu isim ve soyisimleri oluşturulur.
+Team and coach names are read from a file named '[footballTeams.txt](https://github.com/elifkapln/Virtual-Football-Leauge/files/8884783/footballTeams.txt)'.
+Player names and surnames are randomly generated from the information in the '[playersNames.txt](https://github.com/elifkapln/Virtual-Football-Leauge/files/8884790/playersNames.txt)' and '[playersLastnames.txt](https://github.com/elifkapln/Virtual-Football-Leauge/files/8884791/playersLastnames.txt)' files.
